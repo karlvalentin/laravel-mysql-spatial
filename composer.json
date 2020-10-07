@@ -1,5 +1,5 @@
 {
-    "name": "taliptako/laravel-mysql-spatial",
+    "name": "karlvalentin/laravel-mysql-spatial",
     "description": "MySQL spatial data types extension for Laravel.",
     "scripts": {
         "test": "phpunit -c phpunit.xml.dist",
@@ -12,6 +12,10 @@
         {
             "name": "Joseph Estefane",
             "email": "estefanejoe@gmail.com"
+        },
+        {
+            "name": "Karl Valentin",
+            "email": "karl.valentin@kvis.de"
         }
     ],
     "require": {
