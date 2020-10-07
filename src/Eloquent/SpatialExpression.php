@@ -15,9 +15,4 @@ class SpatialExpression extends Expression
     {
         return $this->value->toWkt();
     }
-
-    public function getSrid()
-    {
-        return $this->value->getSrid();
-    }
 }

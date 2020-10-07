@@ -8,16 +8,6 @@ use Illuminate\Support\Fluent;
 
 class MySqlGrammar extends IlluminateMySqlGrammar
 {
-    const COLUMN_MODIFIER_SRID = 'Srid';
-
-    public function __construct()
-    {
-        // Enable SRID as a column modifier
-        if (!in_array(self::COLUMN_MODIFIER_SRID, $this->modifiers)) {
-            $this->modifiers[] = self::COLUMN_MODIFIER_SRID;
-        }
-    }
-
     /**
      * Adds a statement to add a geometry column.
      *
@@ -125,20 +115,5 @@ class MySqlGrammar extends IlluminateMySqlGrammar
     public function compileSpatial(Blueprint $blueprint, Fluent $command)
     {
         return $this->compileKey($blueprint, $command, 'spatial');
-    }
-
-    /**
-     * Get the SQL for a SRID column modifier.
-     *
-     * @param \Illuminate\Database\Schema\Blueprint $blueprint
-     * @param Fluent                                $column
-     *
-     * @return string|null
-     */
-    protected function modifySrid(\Illuminate\Database\Schema\Blueprint $blueprint, Fluent $column)
-    {
-        if (!is_null($column->srid) && is_int($column->srid) && $column->srid > 0) {
-            return ' srid '.$column->srid;
-        }
     }
 }

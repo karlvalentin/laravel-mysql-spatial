@@ -12,10 +12,8 @@ class Point extends Geometry
 
     protected $lng;
 
-    public function __construct($lat, $lng, $srid = 0)
+    public function __construct($lat, $lng)
     {
-        parent::__construct($srid);
-
         $this->lat = (float) $lat;
         $this->lng = (float) $lng;
     }
@@ -45,11 +43,11 @@ class Point extends Geometry
         return $this->getLng().' '.$this->getLat();
     }
 
-    public static function fromPair($pair, $srid = 0)
+    public static function fromPair($pair)
     {
         list($lng, $lat) = explode(' ', trim($pair, "\t\n\r \x0B()"));
 
-        return new static((float) $lat, (float) $lng, (int) $srid);
+        return new static((float) $lat, (float) $lng);
     }
 
     public function toWKT()
@@ -57,9 +55,9 @@ class Point extends Geometry
         return sprintf('POINT(%s)', (string) $this);
     }
 
-    public static function fromString($wktArgument, $srid = 0)
+    public static function fromString($wktArgument)
     {
-        return static::fromPair($wktArgument, $srid);
+        return static::fromPair($wktArgument);
     }
 
     public function __toString()

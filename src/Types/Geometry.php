@@ -19,23 +19,6 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
         7 => GeometryCollection::class,
     ];
 
-    protected $srid;
-
-    public function __construct($srid = 0)
-    {
-        $this->srid = (int) $srid;
-    }
-
-    public function getSrid()
-    {
-        return $this->srid;
-    }
-
-    public function setSrid($srid)
-    {
-        $this->srid = (int) $srid;
-    }
-
     public static function getWKTArgument($value)
     {
         $left = strpos($value, '(');
@@ -80,10 +63,6 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
         /** @var Geometry $parsed */
         $parsed = $parser->parse($wkb);
 
-        if ($srid > 0) {
-            $parsed->setSrid($srid);
-        }
-
         return $parsed;
     }
 
@@ -91,7 +70,7 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
     {
         $wktArgument = static::getWKTArgument($wkt);
 
-        return static::fromString($wktArgument, $srid);
+        return static::fromString($wktArgument);
     }
 
     public static function fromJson($geoJson)

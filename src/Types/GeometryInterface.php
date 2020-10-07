@@ -10,7 +10,7 @@ interface GeometryInterface
 
     public function __toString();
 
-    public static function fromString($wktArgument, $srid = 0);
+    public static function fromString($wktArgument);
 
     public static function fromJson($geoJson);
 }

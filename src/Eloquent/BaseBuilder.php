@@ -12,7 +12,6 @@ class BaseBuilder extends QueryBuilder
         foreach ($bindings as &$binding) {
             if ($binding instanceof SpatialExpression) {
                 $spatialBindings[] = $binding->getSpatialValue();
-                $spatialBindings[] = $binding->getSrid();
             } else {
                 $spatialBindings[] = $binding;
             }
